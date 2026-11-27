@@ -1,0 +1,66 @@
+BENCHMARK CC–CV Y MAMDANI PARA CUATRO CELDAS EN SERIE
+
+Requisitos
+MATLAB R2023b Update 11, Simulink, Fuzzy Logic Toolbox, Simscape y
+Simscape Electrical con Specialized Power Systems. Para el manuscrito,
+se necesita una instalación de LaTeX con pdfLaTeX y los paquetes de ingles.tex.
+
+Reproducción completa
+1. Abra la carpeta de este archivo en MATLAB y ejecute run_benchmark.
+   El script ejecuta 35 simulaciones del benchmark y la validación de Eisto.
+   Comprueba el evento de voltaje y genera los CSV, los inventarios JSON,
+   los gráficos y las tablas de LaTeX. Escribe los resultados en results/
+   y las figuras del manuscrito en InformeBaterias/images/.
+   Puede indicar otro destino para el manuscrito con run_benchmark(paperDir).
+2. Compile InformeBaterias/ingles.tex con latexmk -pdf ingles.tex desde
+   InformeBaterias, o ejecute pdfLaTeX dos veces.
+3. Para regenerar las figuras y tablas desde los CSV existentes, ejecute:
+   build_paper_assets(fullfile(pwd,'results'),fullfile(pwd,'InformeBaterias'))
+   La fuente de la comparación con Eisto está en Validacion_Eisto/.
+   Su propio LEEME explica cómo reproducirla por separado.
+
+Archivos principales
+SIMULINK_CCCV.slx y SIMULINK_Fuzzy.slx son los dos modelos del benchmark.
+Fuzzy_2_2A.fis es el Mamdani nominal. Fuzzy_1_8A.fis es la variante de
+sensibilidad, generada por write_output_variant.m con un reescalado afín
+de los vértices de salida. El script comprueba que se mantienen las
+funciones de pertenencia de entrada, las reglas y la relación entre los
+centroides de ambas configuraciones. Al pulsar Run en SIMULINK_Fuzzy.slx,
+el modelo usa el FIS nominal. Para el barrido, run_benchmark selecciona
+el FIS por corrida usando SimulationInput.
+
+Casos registrados
+baseline: SOC inicial uniforme de 2,5 %, techo de 2,2 A.
+limit110, limit150, limit180: mismo SOC, techos de 1,1, 1,5 y 1,8 A.
+  En Mamdani, el FIS sigue siendo Fuzzy_2_2A.fis.
+mean20, mean40: SOC uniforme de 20 % y 40 %, techo de 2,2 A.
+spread10, spread30, spread30rev: media de SOC de 20 %, distinta dispersión
+  inicial y orden. SOC0 sigue el orden BV1–BV4.
+output180_baseline, output180_mean20, output180_spread30: el FIS
+  Fuzzy_1_8A.fis se ejecuta con el techo posterior fijo en 2,2 A, igual
+  que en los tres casos nominales correspondientes. Se exportan las
+  métricas eléctricas del primer cruce de 4,2 V.
+extended: SOC uniforme de 2,5 %, techo de 2,2 A y paro de voltaje
+  desactivado hasta 99 % de SOC o 10 000 s. Las excursiones posteriores
+  a 4,2 V son diagnósticas.
+thermalLL, thermalLH, thermalHL, thermalHH: caso extendido con las cuatro
+  combinaciones Cth = 36/50 J/K y Rth = 10/30 K/W.
+solverCheck: paso máximo y tolerancias refinados.
+sampleCheck: periodos eléctrico y de consigna de 0,5 s.
+
+Temperatura
+La comparación a 90 % de SOC y las extensiones térmicas corresponden
+a CC–CV y al FIS nominal de 0,5–2,2 A, con SOC inicial uniforme de 2,5 %
+y techo de corriente de 2,2 A. La tabla de sensibilidad térmica varía
+Cth y Rth. Los tres CSV output180 omiten la temperatura porque esa
+variante se analiza solo con métricas eléctricas.
+
+Datos y figuras
+results/summary.csv identifica cada corrida, su FIS, el límite de
+corriente y las métricas. Cada CSV de señales está alineado con los
+tiempos registrados del voltaje de celda. Los modelos registran en
+memoria con logsout. Los JSON contienen los parámetros, conexiones y
+tiempos de muestreo de los bloques superiores. Los PDF vectoriales son
+los que utiliza ingles.tex. Los FIG permiten editar los gráficos en
+MATLAB. La figura de la variante de salida es membership_current_180.pdf
+y la comparación conjunta es output_sensitivity.pdf.

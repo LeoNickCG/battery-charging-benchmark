@@ -1,0 +1,11 @@
+slprj/
+*.slxc
+*.slx.autosave
+*.asv
+*.mat
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
