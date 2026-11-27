@@ -1,0 +1,2175 @@
+{
+  "Model": "SIMULINK_CCCV",
+  "MATLAB": "23.2.0.3097123 (R2023b) Update 11",
+  "InstalledProducts": [
+    {
+      "Name": "Computer Vision Toolbox",
+      "Version": "23.2",
+      "Release": "(R2023b)",
+      "Date": "01-Aug-2023"
+    },
+    {
+      "Name": "Fuzzy Logic Toolbox",
+      "Version": "23.2",
+      "Release": "(R2023b)",
+      "Date": "01-Aug-2023"
+    },
+    {
+      "Name": "Image Processing Toolbox",
+      "Version": "23.2",
+      "Release": "(R2023b)",
+      "Date": "01-Aug-2023"
+    },
+    {
+      "Name": "MATLAB",
+      "Version": "23.2",
+      "Release": "(R2023b)",
+      "Date": "01-Aug-2023"
+    },
+    {
+      "Name": "Optimization Toolbox",
+      "Version": "23.2",
+      "Release": "(R2023b)",
+      "Date": "01-Aug-2023"
+    },
+    {
+      "Name": "Simscape",
+      "Version": "23.2",
+      "Release": "(R2023b)",
+      "Date": "01-Aug-2023"
+    },
+    {
+      "Name": "Simscape Electrical",
+      "Version": "23.2",
+      "Release": "(R2023b)",
+      "Date": "01-Aug-2023"
+    },
+    {
+      "Name": "Simulink",
+      "Version": "23.2",
+      "Release": "(R2023b)",
+      "Date": "01-Aug-2023"
+    }
+  ],
+  "Solver": {
+    "SolverType": "Variable-step",
+    "Solver": "ode23tb",
+    "RelTol": "1e-5",
+    "AbsTol": "1e-7",
+    "AutoScaleAbsTol": "on",
+    "InitialStep": "auto",
+    "MinStep": "auto",
+    "MaxStep": "1",
+    "StopTime": "10000",
+    "ZeroCrossControl": "UseLocalSettings",
+    "ZeroCrossAlgorithm": "Nonadaptive",
+    "SignalLoggingName": "logsout"
+  },
+  "ModelWorkspace": {
+    "Cth": 40.5,
+    "Idis_plot": 0.95652,
+    "Ilimit": 2.2,
+    "Qrated": 2.2,
+    "R0": 0.016818,
+    "Rth": 20,
+    "SOC0": [
+      2.5,
+      2.5,
+      2.5,
+      2.5
+    ],
+    "SOCstop": 99,
+    "StopAtVoltage": true,
+    "Tamb": 25,
+    "Tresponse": 10,
+    "TsFIS": 1,
+    "TsPower": 1,
+    "Vcutoff": 4.2,
+    "Vnom": 3.7
+  },
+  "Blocks": [
+    {
+      "Path": "SIMULINK_CCCV/Battery1",
+      "Type": "SubSystem",
+      "Library": "spsBatteryLib/Battery",
+      "Parameters": {
+        "BatType": "Lithium-Ion",
+        "ShowTempParam": "off",
+        "ThermalPreset": "no",
+        "ShowAgeParam": "off",
+        "NomV": "Vnom",
+        "NomQ": "Qrated",
+        "SOC": "SOC0(4)",
+        "Batt_Tr": "Tresponse",
+        "PresetModel": "on",
+        "MaxQ": "2.2",
+        "MinV": "2.775",
+        "FullV": "4.3068",
+        "Dis_rate": "0.95652",
+        "R": "0.016818",
+        "Normal_OP": "1.9896",
+        "expZone": "[3.9974     0.10809]",
+        "current": "Idis_plot",
+        "Units": "Time",
+        "Tci": "20",
+        "NomT": "20",
+        "T2": "-30",
+        "MaxQ2": "4.8",
+        "FullV2": "7.1",
+        "Normal_OP2": "5.655",
+        "expZone2": "[6.58           1]",
+        "Rca": "0.6",
+        "ti": "2000",
+        "Dp": "0",
+        "Neq0": "0",
+        "Tsim": "1e6",
+        "Ta1": "25",
+        "Qeol": "5.4*0.9",
+        "Reol": "0.013333*1.2",
+        "Char_age": "[2.3478, 3]",
+        "Dis_age": "[2.3478, 10]",
+        "N1": "1500",
+        "N2": "10500",
+        "N3": "1000",
+        "N4": "1400",
+        "Ta2": "45",
+        "N5": "950"
+      },
+      "CompiledSampleTime": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          null,
+          0
+        ],
+        [
+          null,
+          null
+        ]
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Bus\nSelector4",
+          "DestinationPort": 0
+        },
+        {
+          "Type": "LConn1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Battery2",
+          "DestinationPort": "LConn2"
+        },
+        {
+          "Type": "LConn2",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [
+            "SIMULINK_CCCV/Controlled Current Source",
+            "SIMULINK_CCCV/Controlled Voltage Source",
+            "SIMULINK_CCCV/Voltage Measurement"
+          ],
+          "DestinationPort": [
+            "LConn1",
+            "LConn1",
+            "LConn2"
+          ]
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Battery2",
+      "Type": "SubSystem",
+      "Library": "spsBatteryLib/Battery",
+      "Parameters": {
+        "BatType": "Lithium-Ion",
+        "ShowTempParam": "off",
+        "ThermalPreset": "no",
+        "ShowAgeParam": "off",
+        "NomV": "Vnom",
+        "NomQ": "Qrated",
+        "SOC": "SOC0(2)",
+        "Batt_Tr": "Tresponse",
+        "PresetModel": "on",
+        "MaxQ": "2.2",
+        "MinV": "2.775",
+        "FullV": "4.3068",
+        "Dis_rate": "0.95652",
+        "R": "0.016818",
+        "Normal_OP": "1.9896",
+        "expZone": "[3.9974     0.10809]",
+        "current": "Idis_plot",
+        "Units": "Time",
+        "Tci": "20",
+        "NomT": "20",
+        "T2": "-30",
+        "MaxQ2": "4.8",
+        "FullV2": "7.1",
+        "Normal_OP2": "5.655",
+        "expZone2": "[6.58           1]",
+        "Rca": "0.6",
+        "ti": "2000",
+        "Dp": "0",
+        "Neq0": "0",
+        "Tsim": "1e6",
+        "Ta1": "25",
+        "Qeol": "5.4*0.9",
+        "Reol": "0.013333*1.2",
+        "Char_age": "[2.3478, 3]",
+        "Dis_age": "[2.3478, 10]",
+        "N1": "1500",
+        "N2": "10500",
+        "N3": "1000",
+        "N4": "1400",
+        "Ta2": "45",
+        "N5": "950"
+      },
+      "CompiledSampleTime": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          null,
+          0
+        ],
+        [
+          null,
+          null
+        ]
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Bus\nSelector2",
+          "DestinationPort": 0
+        },
+        {
+          "Type": "LConn1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Battery3",
+          "DestinationPort": "LConn2"
+        },
+        {
+          "Type": "LConn2",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Battery1",
+          "DestinationPort": "LConn1"
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Battery3",
+      "Type": "SubSystem",
+      "Library": "spsBatteryLib/Battery",
+      "Parameters": {
+        "BatType": "Lithium-Ion",
+        "ShowTempParam": "off",
+        "ThermalPreset": "no",
+        "ShowAgeParam": "off",
+        "NomV": "Vnom",
+        "NomQ": "Qrated",
+        "SOC": "SOC0(1)",
+        "Batt_Tr": "Tresponse",
+        "PresetModel": "on",
+        "MaxQ": "2.2",
+        "MinV": "2.775",
+        "FullV": "4.3068",
+        "Dis_rate": "0.95652",
+        "R": "0.016818",
+        "Normal_OP": "1.9896",
+        "expZone": "[3.9974     0.10809]",
+        "current": "Idis_plot",
+        "Units": "Time",
+        "Tci": "20",
+        "NomT": "20",
+        "T2": "-30",
+        "MaxQ2": "4.8",
+        "FullV2": "7.1",
+        "Normal_OP2": "5.655",
+        "expZone2": "[6.58           1]",
+        "Rca": "0.6",
+        "ti": "2000",
+        "Dp": "0",
+        "Neq0": "0",
+        "Tsim": "1e6",
+        "Ta1": "25",
+        "Qeol": "5.4*0.9",
+        "Reol": "0.013333*1.2",
+        "Char_age": "[2.3478, 3]",
+        "Dis_age": "[2.3478, 10]",
+        "N1": "1500",
+        "N2": "10500",
+        "N3": "1000",
+        "N4": "1400",
+        "Ta2": "45",
+        "N5": "950"
+      },
+      "CompiledSampleTime": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          null,
+          0
+        ],
+        [
+          null,
+          null
+        ]
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Bus\nSelector1",
+          "DestinationPort": 0
+        },
+        {
+          "Type": "LConn1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Battery5",
+          "DestinationPort": "LConn2"
+        },
+        {
+          "Type": "LConn2",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Battery2",
+          "DestinationPort": "LConn1"
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Battery5",
+      "Type": "SubSystem",
+      "Library": "spsBatteryLib/Battery",
+      "Parameters": {
+        "BatType": "Lithium-Ion",
+        "ShowTempParam": "off",
+        "ThermalPreset": "no",
+        "ShowAgeParam": "off",
+        "NomV": "Vnom",
+        "NomQ": "Qrated",
+        "SOC": "SOC0(3)",
+        "Batt_Tr": "Tresponse",
+        "PresetModel": "on",
+        "MaxQ": "2.2",
+        "MinV": "2.775",
+        "FullV": "4.3068",
+        "Dis_rate": "0.95652",
+        "R": "0.016818",
+        "Normal_OP": "1.9896",
+        "expZone": "[3.9974     0.10809]",
+        "current": "Idis_plot",
+        "Units": "Time",
+        "Tci": "20",
+        "NomT": "20",
+        "T2": "-30",
+        "MaxQ2": "4.8",
+        "FullV2": "7.1",
+        "Normal_OP2": "5.655",
+        "expZone2": "[6.58           1]",
+        "Rca": "0.6",
+        "ti": "2000",
+        "Dp": "0",
+        "Neq0": "0",
+        "Tsim": "1e6",
+        "Ta1": "25",
+        "Qeol": "5.4*0.9",
+        "Reol": "0.013333*1.2",
+        "Char_age": "[2.3478, 3]",
+        "Dis_age": "[2.3478, 10]",
+        "N1": "1500",
+        "N2": "10500",
+        "N3": "1000",
+        "N4": "1400",
+        "Ta2": "45",
+        "N5": "950"
+      },
+      "CompiledSampleTime": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          null,
+          0
+        ],
+        [
+          null,
+          null
+        ]
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Bus\nSelector3",
+          "DestinationPort": 0
+        },
+        {
+          "Type": "LConn1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [
+            "SIMULINK_CCCV/Current Measurement",
+            "SIMULINK_CCCV/Voltage Measurement"
+          ],
+          "DestinationPort": [
+            "RConn1",
+            "LConn1"
+          ]
+        },
+        {
+          "Type": "LConn2",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Battery3",
+          "DestinationPort": "LConn1"
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Breaker",
+      "Type": "SubSystem",
+      "Library": "spsBreakerLib/Breaker",
+      "Parameters": {
+        "InitialState": "0",
+        "SwitchingTimes": "[1/60  5/60]",
+        "External": "on",
+        "BreakerResistance": "0.01",
+        "SnubberResistance": "1e6",
+        "SnubberCapacitance": "inf",
+        "Measurements": "None",
+        "MoreParameters": "on",
+        "NoBreakLoop": "off"
+      },
+      "CompiledSampleTime": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/MATLAB Function",
+          "SourcePort": 1,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "LConn1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Controlled Voltage Source",
+          "DestinationPort": "RConn1"
+        },
+        {
+          "Type": "RConn1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [
+            "SIMULINK_CCCV/Breaker1",
+            "SIMULINK_CCCV/Current Measurement"
+          ],
+          "DestinationPort": [
+            "RConn1",
+            "LConn1"
+          ]
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Breaker1",
+      "Type": "SubSystem",
+      "Library": "spsBreakerLib/Breaker",
+      "Parameters": {
+        "InitialState": "0",
+        "SwitchingTimes": "[1/60  5/60]",
+        "External": "on",
+        "BreakerResistance": "0.01",
+        "SnubberResistance": "1e6",
+        "SnubberCapacitance": "inf",
+        "Measurements": "None",
+        "MoreParameters": "on",
+        "NoBreakLoop": "off"
+      },
+      "CompiledSampleTime": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/MATLAB Function",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "LConn1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Controlled Current Source",
+          "DestinationPort": "RConn1"
+        },
+        {
+          "Type": "RConn1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [
+            "SIMULINK_CCCV/Breaker",
+            "SIMULINK_CCCV/Current Measurement"
+          ],
+          "DestinationPort": [
+            "RConn1",
+            "LConn1"
+          ]
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Bus\nSelector1",
+      "Type": "BusSelector",
+      "Library": "",
+      "Parameters": {
+        "OutputSignals": "SOC (%),Current (A),Voltage (V)",
+        "OutputAsBus": "off"
+      },
+      "CompiledSampleTime": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/Battery3",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Cell SOC",
+          "DestinationPort": 0
+        },
+        {
+          "Type": "2",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "3",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [
+            "SIMULINK_CCCV/Cell voltages",
+            "SIMULINK_CCCV/Mux"
+          ],
+          "DestinationPort": [
+            0,
+            1
+          ]
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Bus\nSelector2",
+      "Type": "BusSelector",
+      "Library": "",
+      "Parameters": {
+        "OutputSignals": "SOC (%),Current (A),Voltage (V)",
+        "OutputAsBus": "off"
+      },
+      "CompiledSampleTime": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/Battery2",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Cell SOC",
+          "DestinationPort": 1
+        },
+        {
+          "Type": "2",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "3",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [
+            "SIMULINK_CCCV/Cell voltages",
+            "SIMULINK_CCCV/Mux"
+          ],
+          "DestinationPort": [
+            1,
+            2
+          ]
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Bus\nSelector3",
+      "Type": "BusSelector",
+      "Library": "",
+      "Parameters": {
+        "OutputSignals": "SOC (%),Current (A),Voltage (V)",
+        "OutputAsBus": "off"
+      },
+      "CompiledSampleTime": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/Battery5",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [
+            "SIMULINK_CCCV/Cell SOC",
+            "SIMULINK_CCCV/Mux1",
+            "SIMULINK_CCCV/Scope1"
+          ],
+          "DestinationPort": [
+            2,
+            2,
+            1
+          ]
+        },
+        {
+          "Type": "2",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "3",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [
+            "SIMULINK_CCCV/Scope1",
+            "SIMULINK_CCCV/Mux1",
+            "SIMULINK_CCCV/Mux",
+            "SIMULINK_CCCV/Cell voltages"
+          ],
+          "DestinationPort": [
+            3,
+            1,
+            0,
+            2
+          ]
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Bus\nSelector4",
+      "Type": "BusSelector",
+      "Library": "",
+      "Parameters": {
+        "OutputSignals": "SOC (%),Current (A),Voltage (V)",
+        "OutputAsBus": "off"
+      },
+      "CompiledSampleTime": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/Battery1",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Cell SOC",
+          "DestinationPort": 3
+        },
+        {
+          "Type": "2",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "3",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [
+            "SIMULINK_CCCV/Cell voltages",
+            "SIMULINK_CCCV/Mux"
+          ],
+          "DestinationPort": [
+            3,
+            3
+          ]
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Cell SOC",
+      "Type": "Mux",
+      "Library": "",
+      "Parameters": {
+        "Inputs": "4",
+        "DisplayOption": "bar"
+      },
+      "CompiledSampleTime": [
+        0,
+        1
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/Bus\nSelector1",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "2",
+          "Source": "SIMULINK_CCCV/Bus\nSelector2",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "3",
+          "Source": "SIMULINK_CCCV/Bus\nSelector3",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "4",
+          "Source": "SIMULINK_CCCV/Bus\nSelector4",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Maximum cell SOC",
+          "DestinationPort": 0
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Cell voltages",
+      "Type": "Mux",
+      "Library": "",
+      "Parameters": {
+        "Inputs": "4",
+        "DisplayOption": "bar"
+      },
+      "CompiledSampleTime": [
+        0,
+        1
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/Bus\nSelector1",
+          "SourcePort": 2,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "2",
+          "Source": "SIMULINK_CCCV/Bus\nSelector2",
+          "SourcePort": 2,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "3",
+          "Source": "SIMULINK_CCCV/Bus\nSelector3",
+          "SourcePort": 2,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "4",
+          "Source": "SIMULINK_CCCV/Bus\nSelector4",
+          "SourcePort": 2,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Maximum cell voltage",
+          "DestinationPort": 0
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Clock",
+      "Type": "Clock",
+      "Library": "",
+      "Parameters": {
+        "DisplayTime": "off",
+        "Decimation": "1"
+      },
+      "CompiledSampleTime": [
+        0,
+        0
+      ],
+      "Ports": {
+        "Type": "1",
+        "Source": [],
+        "SourcePort": [],
+        "Destination": [],
+        "DestinationPort": []
+      },
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Constant1",
+      "Type": "Constant",
+      "Library": "",
+      "Parameters": {
+        "Value": "4*Vcutoff",
+        "VectorParams1D": "on",
+        "OutMin": "[]",
+        "OutMax": "[]",
+        "OutDataTypeStr": "Inherit: Inherit from 'Constant value'",
+        "LockScale": "off",
+        "SampleTime": "inf",
+        "FramePeriod": "inf"
+      },
+      "CompiledSampleTime": [
+        null,
+        0
+      ],
+      "Ports": {
+        "Type": "1",
+        "Source": [],
+        "SourcePort": [],
+        "Destination": "SIMULINK_CCCV/Controlled Voltage Source",
+        "DestinationPort": 0
+      },
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Constant4",
+      "Type": "Constant",
+      "Library": "",
+      "Parameters": {
+        "Value": "Ilimit",
+        "VectorParams1D": "on",
+        "OutMin": "[]",
+        "OutMax": "[]",
+        "OutDataTypeStr": "Inherit: Inherit from 'Constant value'",
+        "LockScale": "off",
+        "SampleTime": "inf",
+        "FramePeriod": "inf"
+      },
+      "CompiledSampleTime": [
+        null,
+        0
+      ],
+      "Ports": {
+        "Type": "1",
+        "Source": [],
+        "SourcePort": [],
+        "Destination": "SIMULINK_CCCV/Controlled Current Source",
+        "DestinationPort": 0
+      },
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Controlled Current Source",
+      "Type": "SubSystem",
+      "Library": "spsControlledCurrentSourceLib/Controlled Current Source",
+      "Parameters": {
+        "Initialize": "on",
+        "Source_Type": "DC",
+        "Amplitude": "0",
+        "Phase": "0",
+        "Frequency": "0",
+        "Measurements": "None"
+      },
+      "CompiledSampleTime": [
+        0,
+        0
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/Constant4",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "LConn1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [
+            "SIMULINK_CCCV/Battery1",
+            "SIMULINK_CCCV/Controlled Voltage Source",
+            "SIMULINK_CCCV/Voltage Measurement"
+          ],
+          "DestinationPort": [
+            "LConn2",
+            "LConn1",
+            "LConn2"
+          ]
+        },
+        {
+          "Type": "RConn1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Breaker1",
+          "DestinationPort": "LConn1"
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Controlled Voltage Source",
+      "Type": "SubSystem",
+      "Library": "spsControlledVoltageSourceLib/Controlled Voltage Source",
+      "Parameters": {
+        "Initialize": "on",
+        "Source_Type": "DC",
+        "Amplitude": "0",
+        "Phase": "0",
+        "Frequency": "0",
+        "Measurements": "None"
+      },
+      "CompiledSampleTime": [
+        0,
+        0
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/Constant1",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "LConn1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [
+            "SIMULINK_CCCV/Battery1",
+            "SIMULINK_CCCV/Controlled Current Source",
+            "SIMULINK_CCCV/Voltage Measurement"
+          ],
+          "DestinationPort": [
+            "LConn2",
+            "LConn1",
+            "LConn2"
+          ]
+        },
+        {
+          "Type": "RConn1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Breaker",
+          "DestinationPort": "LConn1"
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Cth",
+      "Type": "Constant",
+      "Library": "",
+      "Parameters": {
+        "Value": "Cth",
+        "VectorParams1D": "on",
+        "OutMin": "[]",
+        "OutMax": "[]",
+        "OutDataTypeStr": "Inherit: Inherit from 'Constant value'",
+        "LockScale": "off",
+        "SampleTime": "inf",
+        "FramePeriod": "inf"
+      },
+      "CompiledSampleTime": [
+        null,
+        0
+      ],
+      "Ports": {
+        "Type": "1",
+        "Source": [],
+        "SourcePort": [],
+        "Destination": "SIMULINK_CCCV/MATLAB Function1",
+        "DestinationPort": 4
+      },
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Current Measurement",
+      "Type": "SubSystem",
+      "Library": "spsCurrentMeasurementLib/Current Measurement",
+      "Parameters": {
+        "PhasorSimulation": "off",
+        "OutputType": "Complex",
+        "PSBequivalent": "0"
+      },
+      "CompiledSampleTime": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [
+            "SIMULINK_CCCV/MATLAB Function1",
+            "SIMULINK_CCCV/Scope1",
+            "SIMULINK_CCCV/Mux1"
+          ],
+          "DestinationPort": [
+            0,
+            2,
+            0
+          ]
+        },
+        {
+          "Type": "LConn1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [
+            "SIMULINK_CCCV/Breaker",
+            "SIMULINK_CCCV/Breaker1"
+          ],
+          "DestinationPort": [
+            "RConn1",
+            "RConn1"
+          ]
+        },
+        {
+          "Type": "RConn1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [
+            "SIMULINK_CCCV/Battery5",
+            "SIMULINK_CCCV/Voltage Measurement"
+          ],
+          "DestinationPort": [
+            "LConn1",
+            "LConn1"
+          ]
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Enable voltage stop",
+      "Type": "Logic",
+      "Library": "",
+      "Parameters": {
+        "Operator": "AND",
+        "Inputs": "2",
+        "IconShape": "rectangular",
+        "AllPortsSameDT": "off",
+        "OutDataTypeStr": "boolean",
+        "SampleTime": "-1"
+      },
+      "CompiledSampleTime": [
+        0,
+        1
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/Voltage event",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "2",
+          "Source": "SIMULINK_CCCV/Stop at voltage",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/End charge run",
+          "DestinationPort": 0
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/End charge run",
+      "Type": "Logic",
+      "Library": "",
+      "Parameters": {
+        "Operator": "OR",
+        "Inputs": "2",
+        "IconShape": "rectangular",
+        "AllPortsSameDT": "off",
+        "OutDataTypeStr": "boolean",
+        "SampleTime": "-1"
+      },
+      "CompiledSampleTime": [
+        0,
+        1
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/Enable voltage stop",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "2",
+          "Source": "SIMULINK_CCCV/SOC event",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Stop Simulation",
+          "DestinationPort": 0
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Integrator",
+      "Type": "Integrator",
+      "Library": "",
+      "Parameters": {
+        "ExternalReset": "none",
+        "InitialConditionSource": "internal",
+        "InitialCondition": "Tamb",
+        "LimitOutput": "off",
+        "UpperSaturationLimit": "inf",
+        "LowerSaturationLimit": "-inf",
+        "WrapState": "off",
+        "WrappedStateUpperValue": "pi",
+        "WrappedStateLowerValue": "-pi",
+        "ShowSaturationPort": "off",
+        "ShowStatePort": "off",
+        "AbsoluteTolerance": "auto",
+        "IgnoreLimit": "off",
+        "ZeroCross": "on",
+        "ContinuousStateAttributes": "''"
+      },
+      "CompiledSampleTime": [
+        0,
+        0
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/MATLAB Function1",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [
+            "SIMULINK_CCCV/Scope1",
+            "SIMULINK_CCCV/Mux1",
+            "SIMULINK_CCCV/MATLAB Function1"
+          ],
+          "DestinationPort": [
+            0,
+            3,
+            1
+          ]
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/MATLAB Function",
+      "Type": "SubSystem",
+      "Library": "",
+      "Parameters": {
+        "ShowPortLabels": "FromPortIcon",
+        "BlockChoice": "",
+        "TemplateBlock": "",
+        "MemberBlocks": "",
+        "Permissions": "ReadWrite",
+        "ErrorFcn": "Stateflow.Translate.translate",
+        "PermitHierarchicalResolution": "ExplicitOnly",
+        "TreatAsAtomicUnit": "on",
+        "ShowSubsystemReinitializePorts": "off",
+        "MinAlgLoopOccurrences": "off",
+        "ScheduleAs": "Sample time",
+        "PartitionName": "",
+        "SystemSampleTime": "-1",
+        "SetExecutionDomain": "off",
+        "ExecutionDomainType": "Deduce",
+        "RTWSystemCode": "Auto",
+        "RTWFcnNameOpts": "Auto",
+        "RTWFcnName": "",
+        "RTWFileNameOpts": "Auto",
+        "RTWFileName": "",
+        "FunctionInterfaceSpec": "void_void",
+        "FunctionWithSeparateData": "off",
+        "RTWMemSecFuncInitTerm": "Inherit from model",
+        "RTWMemSecFuncExecute": "Inherit from model",
+        "RTWMemSecDataConstants": "Inherit from model",
+        "RTWMemSecDataInternal": "Inherit from model",
+        "RTWMemSecDataParameters": "Inherit from model",
+        "IsSubsystemVirtual": "off",
+        "Variant": "off",
+        "VariantChoicesSpecifier": "",
+        "VariantChoicesEnumeration": "",
+        "VariantControlVariable": "",
+        "VariantChoices": [],
+        "VariantControlMode": "expression",
+        "VariantControl": "",
+        "LabelModeActiveChoice": "",
+        "VariantActivationTime": "update diagram",
+        "AllowZeroVariantControls": "off",
+        "PropagateVariantConditions": "off",
+        "AllowFlexibleInterface": "on",
+        "CompiledActiveChoiceControl": "",
+        "CompiledActiveChoiceBlock": "",
+        "TreatAsGroupedWhenPropagatingVariantConditions": "on",
+        "ReferencedSubsystem": "",
+        "Latency": "0",
+        "AutoFrameSizeCalculation": "off",
+        "CompiledVariantActivationTime": "update diagram"
+      },
+      "CompiledSampleTime": [
+        0,
+        1
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/Maximum cell voltage",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Breaker1",
+          "DestinationPort": 0
+        },
+        {
+          "Type": "2",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Breaker",
+          "DestinationPort": 0
+        }
+      ],
+      "MatlabFunction": "function [CC, CV] = control_cccv(Vmed)\n\npersistent estadoCV\n\n% Inicialización\nif isempty(estadoCV)\n    estadoCV = false;\nend\n\n% Si todavía estamos en CC y se alcanza 4.2 V,\n% cambiar permanentemente a CV\nif ~estadoCV && Vmed >= 4.2\n    estadoCV = true;\nend\n\n% Salidas hacia los conmutadores\nif estadoCV\n    CC = 0;\n    CV = 1;\nelse\n    CC = 1;\n    CV = 0;\nend\n\nend"
+    },
+    {
+      "Path": "SIMULINK_CCCV/MATLAB Function1",
+      "Type": "SubSystem",
+      "Library": "",
+      "Parameters": {
+        "ShowPortLabels": "FromPortIcon",
+        "BlockChoice": "",
+        "TemplateBlock": "",
+        "MemberBlocks": "",
+        "Permissions": "ReadWrite",
+        "ErrorFcn": "Stateflow.Translate.translate",
+        "PermitHierarchicalResolution": "ExplicitOnly",
+        "TreatAsAtomicUnit": "on",
+        "ShowSubsystemReinitializePorts": "off",
+        "MinAlgLoopOccurrences": "off",
+        "ScheduleAs": "Sample time",
+        "PartitionName": "",
+        "SystemSampleTime": "-1",
+        "SetExecutionDomain": "off",
+        "ExecutionDomainType": "Deduce",
+        "RTWSystemCode": "Auto",
+        "RTWFcnNameOpts": "Auto",
+        "RTWFcnName": "",
+        "RTWFileNameOpts": "Auto",
+        "RTWFileName": "",
+        "FunctionInterfaceSpec": "void_void",
+        "FunctionWithSeparateData": "off",
+        "RTWMemSecFuncInitTerm": "Inherit from model",
+        "RTWMemSecFuncExecute": "Inherit from model",
+        "RTWMemSecDataConstants": "Inherit from model",
+        "RTWMemSecDataInternal": "Inherit from model",
+        "RTWMemSecDataParameters": "Inherit from model",
+        "IsSubsystemVirtual": "off",
+        "Variant": "off",
+        "VariantChoicesSpecifier": "",
+        "VariantChoicesEnumeration": "",
+        "VariantControlVariable": "",
+        "VariantChoices": [],
+        "VariantControlMode": "expression",
+        "VariantControl": "",
+        "LabelModeActiveChoice": "",
+        "VariantActivationTime": "update diagram",
+        "AllowZeroVariantControls": "off",
+        "PropagateVariantConditions": "off",
+        "AllowFlexibleInterface": "on",
+        "CompiledActiveChoiceControl": "",
+        "CompiledActiveChoiceBlock": "",
+        "TreatAsGroupedWhenPropagatingVariantConditions": "on",
+        "ReferencedSubsystem": "",
+        "Latency": "0",
+        "AutoFrameSizeCalculation": "off",
+        "CompiledVariantActivationTime": "update diagram"
+      },
+      "CompiledSampleTime": [
+        0,
+        0
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/Current Measurement",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "2",
+          "Source": "SIMULINK_CCCV/Integrator",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "3",
+          "Source": "SIMULINK_CCCV/R0",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "4",
+          "Source": "SIMULINK_CCCV/Tamb",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "5",
+          "Source": "SIMULINK_CCCV/Cth",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "6",
+          "Source": "SIMULINK_CCCV/Rth",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Integrator",
+          "DestinationPort": 0
+        }
+      ],
+      "MatlabFunction": "function dTdt = modelo_termico(I,T,R0,Tamb,Cth,Rth)\ndTdt = (I^2*R0 - (T-Tamb)/Rth)/Cth;\nend\n"
+    },
+    {
+      "Path": "SIMULINK_CCCV/Maximum cell SOC",
+      "Type": "MinMax",
+      "Library": "",
+      "Parameters": {
+        "Function": "max",
+        "Inputs": "1",
+        "InputSameDT": "off",
+        "OutMin": "[]",
+        "OutMax": "[]",
+        "OutDataTypeStr": "Inherit: Inherit via internal rule",
+        "LockScale": "off",
+        "RndMeth": "Floor",
+        "SaturateOnIntegerOverflow": "off",
+        "ZeroCross": "on",
+        "SampleTime": "-1"
+      },
+      "CompiledSampleTime": [
+        0,
+        1
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/Cell SOC",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/SOC event",
+          "DestinationPort": 0
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Maximum cell voltage",
+      "Type": "MinMax",
+      "Library": "",
+      "Parameters": {
+        "Function": "max",
+        "Inputs": "1",
+        "InputSameDT": "off",
+        "OutMin": "[]",
+        "OutMax": "[]",
+        "OutDataTypeStr": "Inherit: Inherit via internal rule",
+        "LockScale": "off",
+        "RndMeth": "Floor",
+        "SaturateOnIntegerOverflow": "off",
+        "ZeroCross": "on",
+        "SampleTime": "-1"
+      },
+      "CompiledSampleTime": [
+        0,
+        1
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/Cell voltages",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [
+            "SIMULINK_CCCV/MATLAB Function",
+            "SIMULINK_CCCV/Voltage event"
+          ],
+          "DestinationPort": [
+            0,
+            0
+          ]
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Mux",
+      "Type": "Mux",
+      "Library": "",
+      "Parameters": {
+        "Inputs": "4",
+        "DisplayOption": "bar"
+      },
+      "CompiledSampleTime": [
+        0,
+        1
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/Bus\nSelector3",
+          "SourcePort": 2,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "2",
+          "Source": "SIMULINK_CCCV/Bus\nSelector1",
+          "SourcePort": 2,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "3",
+          "Source": "SIMULINK_CCCV/Bus\nSelector2",
+          "SourcePort": 2,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "4",
+          "Source": "SIMULINK_CCCV/Bus\nSelector4",
+          "SourcePort": 2,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [],
+          "DestinationPort": []
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Mux1",
+      "Type": "Mux",
+      "Library": "",
+      "Parameters": {
+        "Inputs": "4",
+        "DisplayOption": "bar"
+      },
+      "CompiledSampleTime": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/Current Measurement",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "2",
+          "Source": "SIMULINK_CCCV/Bus\nSelector3",
+          "SourcePort": 2,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "3",
+          "Source": "SIMULINK_CCCV/Bus\nSelector3",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "4",
+          "Source": "SIMULINK_CCCV/Integrator",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [],
+          "DestinationPort": []
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/R0",
+      "Type": "Constant",
+      "Library": "",
+      "Parameters": {
+        "Value": "R0",
+        "VectorParams1D": "on",
+        "OutMin": "[]",
+        "OutMax": "[]",
+        "OutDataTypeStr": "Inherit: Inherit from 'Constant value'",
+        "LockScale": "off",
+        "SampleTime": "inf",
+        "FramePeriod": "inf"
+      },
+      "CompiledSampleTime": [
+        null,
+        0
+      ],
+      "Ports": {
+        "Type": "1",
+        "Source": [],
+        "SourcePort": [],
+        "Destination": "SIMULINK_CCCV/MATLAB Function1",
+        "DestinationPort": 2
+      },
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Rth",
+      "Type": "Constant",
+      "Library": "",
+      "Parameters": {
+        "Value": "Rth",
+        "VectorParams1D": "on",
+        "OutMin": "[]",
+        "OutMax": "[]",
+        "OutDataTypeStr": "Inherit: Inherit from 'Constant value'",
+        "LockScale": "off",
+        "SampleTime": "inf",
+        "FramePeriod": "inf"
+      },
+      "CompiledSampleTime": [
+        null,
+        0
+      ],
+      "Ports": {
+        "Type": "1",
+        "Source": [],
+        "SourcePort": [],
+        "Destination": "SIMULINK_CCCV/MATLAB Function1",
+        "DestinationPort": 5
+      },
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/SOC event",
+      "Type": "SubSystem",
+      "Library": "simulink/Logic and Bit\nOperations/Compare\nTo Constant",
+      "Parameters": {
+        "relop": ">=",
+        "const": "SOCstop",
+        "OutDataTypeStr": "boolean",
+        "ZeroCross": "on"
+      },
+      "CompiledSampleTime": [
+        [
+          0,
+          1
+        ],
+        [
+          null,
+          0
+        ]
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/Maximum cell SOC",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/End charge run",
+          "DestinationPort": 1
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Scope1",
+      "Type": "Scope",
+      "Library": "",
+      "Parameters": {
+        "OpenAtSimulationStart": "off",
+        "DisplayFullPath": "off",
+        "NumInputPorts": "4",
+        "LayoutDimensionsString": "[4 1]",
+        "SampleTime": "-1",
+        "FrameBasedProcessingString": "Elements as channels (sample based)",
+        "MaximizeAxes": "Off",
+        "AxesScaling": "Manual",
+        "AxesScalingNumUpdates": "10",
+        "TimeSpan": "Auto",
+        "TimeSpanOverrunAction": "Wrap",
+        "TimeUnits": "None",
+        "TimeDisplayOffset": "0",
+        "TimeAxisLabels": "Bottom displays only",
+        "ShowTimeAxisLabel": "off",
+        "ActiveDisplayString": "1",
+        "Title": "%<SignalLabel>",
+        "ShowLegend": "off",
+        "ShowGrid": "on",
+        "PlotAsMagnitudePhase": "off",
+        "ActiveDisplayYMinimum": "24.8004",
+        "ActiveDisplayYMaximum": "26.7962",
+        "YLabel": "",
+        "DataLoggingLimitDataPoints": "off",
+        "DataLoggingMaxPoints": "5000",
+        "DataLoggingDecimateData": "off",
+        "DataLoggingDecimation": "2",
+        "DataLogging": "off",
+        "DataLoggingVariableName": "ScopeData2",
+        "DataLoggingSaveFormat": "Dataset"
+      },
+      "CompiledSampleTime": [
+        0,
+        0
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/Integrator",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "2",
+          "Source": "SIMULINK_CCCV/Bus\nSelector3",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "3",
+          "Source": "SIMULINK_CCCV/Current Measurement",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "4",
+          "Source": "SIMULINK_CCCV/Bus\nSelector3",
+          "SourcePort": 2,
+          "Destination": [],
+          "DestinationPort": []
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Scope3",
+      "Type": "Scope",
+      "Library": "",
+      "Parameters": {
+        "OpenAtSimulationStart": "off",
+        "DisplayFullPath": "off",
+        "NumInputPorts": "1",
+        "LayoutDimensionsString": "[1 1]",
+        "SampleTime": "-1",
+        "FrameBasedProcessingString": "Elements as channels (sample based)",
+        "MaximizeAxes": "Off",
+        "AxesScaling": "Manual",
+        "AxesScalingNumUpdates": "10",
+        "TimeSpan": "Auto",
+        "TimeSpanOverrunAction": "Wrap",
+        "TimeUnits": "None",
+        "TimeDisplayOffset": "0",
+        "TimeAxisLabels": "Bottom displays only",
+        "ShowTimeAxisLabel": "off",
+        "ActiveDisplayString": "1",
+        "Title": "%<SignalLabel>",
+        "ShowLegend": "off",
+        "ShowGrid": "on",
+        "PlotAsMagnitudePhase": "off",
+        "ActiveDisplayYMinimum": "13.8971",
+        "ActiveDisplayYMaximum": "19.6108",
+        "YLabel": "",
+        "DataLoggingLimitDataPoints": "off",
+        "DataLoggingMaxPoints": "5000",
+        "DataLoggingDecimateData": "off",
+        "DataLoggingDecimation": "2",
+        "DataLogging": "off",
+        "DataLoggingVariableName": "ScopeData",
+        "DataLoggingSaveFormat": "Dataset"
+      },
+      "CompiledSampleTime": [
+        1,
+        0
+      ],
+      "Ports": {
+        "Type": "1",
+        "Source": "SIMULINK_CCCV/Voltage Measurement",
+        "SourcePort": 0,
+        "Destination": [],
+        "DestinationPort": []
+      },
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Stop Simulation",
+      "Type": "Stop",
+      "Library": "",
+      "Parameters": {},
+      "CompiledSampleTime": [
+        0,
+        1
+      ],
+      "Ports": {
+        "Type": "1",
+        "Source": "SIMULINK_CCCV/End charge run",
+        "SourcePort": 0,
+        "Destination": [],
+        "DestinationPort": []
+      },
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Stop at voltage",
+      "Type": "Constant",
+      "Library": "",
+      "Parameters": {
+        "Value": "StopAtVoltage",
+        "VectorParams1D": "on",
+        "OutMin": "[]",
+        "OutMax": "[]",
+        "OutDataTypeStr": "Inherit: Inherit from 'Constant value'",
+        "LockScale": "off",
+        "SampleTime": "inf",
+        "FramePeriod": "inf"
+      },
+      "CompiledSampleTime": [
+        null,
+        0
+      ],
+      "Ports": {
+        "Type": "1",
+        "Source": [],
+        "SourcePort": [],
+        "Destination": "SIMULINK_CCCV/Enable voltage stop",
+        "DestinationPort": 1
+      },
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Tamb",
+      "Type": "Constant",
+      "Library": "",
+      "Parameters": {
+        "Value": "Tamb",
+        "VectorParams1D": "on",
+        "OutMin": "[]",
+        "OutMax": "[]",
+        "OutDataTypeStr": "Inherit: Inherit from 'Constant value'",
+        "LockScale": "off",
+        "SampleTime": "inf",
+        "FramePeriod": "inf"
+      },
+      "CompiledSampleTime": [
+        null,
+        0
+      ],
+      "Ports": {
+        "Type": "1",
+        "Source": [],
+        "SourcePort": [],
+        "Destination": "SIMULINK_CCCV/MATLAB Function1",
+        "DestinationPort": 3
+      },
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Voltage Measurement",
+      "Type": "SubSystem",
+      "Library": "spsVoltageMeasurementLib/Voltage Measurement",
+      "Parameters": {
+        "PhasorSimulation": "off",
+        "OutputType": "Complex",
+        "PSBequivalent": "0"
+      },
+      "CompiledSampleTime": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Scope3",
+          "DestinationPort": 0
+        },
+        {
+          "Type": "LConn1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [
+            "SIMULINK_CCCV/Battery5",
+            "SIMULINK_CCCV/Current Measurement"
+          ],
+          "DestinationPort": [
+            "LConn1",
+            "RConn1"
+          ]
+        },
+        {
+          "Type": "LConn2",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": [
+            "SIMULINK_CCCV/Battery1",
+            "SIMULINK_CCCV/Controlled Current Source",
+            "SIMULINK_CCCV/Controlled Voltage Source"
+          ],
+          "DestinationPort": [
+            "LConn2",
+            "LConn1",
+            "LConn1"
+          ]
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/Voltage event",
+      "Type": "SubSystem",
+      "Library": "simulink/Logic and Bit\nOperations/Compare\nTo Constant",
+      "Parameters": {
+        "relop": ">=",
+        "const": "Vcutoff",
+        "OutDataTypeStr": "boolean",
+        "ZeroCross": "on"
+      },
+      "CompiledSampleTime": [
+        [
+          0,
+          1
+        ],
+        [
+          null,
+          0
+        ]
+      ],
+      "Ports": [
+        {
+          "Type": "1",
+          "Source": "SIMULINK_CCCV/Maximum cell voltage",
+          "SourcePort": 0,
+          "Destination": [],
+          "DestinationPort": []
+        },
+        {
+          "Type": "1",
+          "Source": [],
+          "SourcePort": [],
+          "Destination": "SIMULINK_CCCV/Enable voltage stop",
+          "DestinationPort": 0
+        }
+      ],
+      "MatlabFunction": ""
+    },
+    {
+      "Path": "SIMULINK_CCCV/powergui",
+      "Type": "SubSystem",
+      "Library": "",
+      "Parameters": {
+        "SimulationMode": "Discrete",
+        "SampleTime": "TsPower",
+        "frequency": "60",
+        "Iterations": "50",
+        "frequencyindice": "0",
+        "Pbase": "100e6",
+        "ErrMax": "1e-4",
+        "UnitsV": "kV",
+        "UnitsW": "MW",
+        "buscounter": "0",
+        "FunctionMessages": "off",
+        "echomessages": "off",
+        "EnableUseOfTLC": "off",
+        "CurrentSourceSwitches": "off",
+        "DisableSnubberDevices": "off",
+        "DisableRonSwitches": "off",
+        "DisableVfSwitches": "off",
+        "DisplayEquations": "off",
+        "AutomaticDiscreteSolvers": "off",
+        "SolverType": "Tustin/Backward Euler (TBE)",
+        "Interpol": "off",
+        "ExternalGateDelay": "off",
+        "methode": "off",
+        "Ts": "100",
+        "x0status": "blocks",
+        "SPID": "on",
+        "SwTol": "0",
+        "HookPort": "off",
+        "NonlinearTolerance": "1e-4",
+        "nMaxIteration": "100",
+        "ContinueOnMaxIteration": "off",
+        "RestoreLinks": "warning",
+        "ResistiveCurrentMeasurement": "off",
+        "Frange": "[0:2:500]",
+        "Ylog": "off",
+        "Xlog": "on",
+        "ShowGrid": "off",
+        "save": "off",
+        "variable": "ZData",
+        "structure": "0",
+        "ZoomFFT": "off",
+        "StartTime": "0.0",
+        "cycles": "1",
+        "DisplayStyle": "1",
+        "fundamental": "60",
+        "FreqAxis": "off",
+        "MaxFrequency": "1000",
+        "frequencyindicesteady": "1",
+        "RmsSteady": "1",
+        "display": "off"
+      },
+      "CompiledSampleTime": [
+        [
+          1,
+          0
+        ],
+        [
+          null,
+          0
+        ]
+      ],
+      "Ports": [],
+      "MatlabFunction": ""
+    }
+  ]
+}
