@@ -1,0 +1,30 @@
+VALIDACIÓN CC–CV CON LA CURVA PUBLICADA DE EISTO
+
+Abrir CCCV_ICR18650.slx en Simulink R2023b con Simscape Electrical
+Specialized Power Systems. Para regenerar los CSV y gráficos, ejecutar
+ejecutar_comparacion desde esta carpeta en MATLAB.
+
+El modelo parte de la configuración CC–CV del estudio. Usa una consigna
+de 1.1 A, cuatro celdas idénticas a SOC inicial de 0 % y un horizonte fijo
+de 10 000 s. Los paros internos por tensión y SOC están inactivos para
+registrar toda la fase CV. Los cinco bloques To Workspace devuelven
+voltajes, SOC, corriente, estado de etapa y temperatura.
+
+datos contiene la ficha de Eisto, el recorte usado como fuente, la curva
+digitalizada, las señales de Simulink y los errores. La capacidad de la
+ficha se expresa como porcentaje de su propio intervalo registrado.
+También se conserva la lectura del eje original. El SOC simulado es la
+salida del modelo. La ficha termina cerca de 9 327 s. Las métricas usan
+solo el intervalo compartido y no incluyen el anclaje al origen.
+
+figuras contiene la ficha digitalizada, la simulación y la superposición,
+en PDF vectorial y PNG. Los tres paneles comparten el eje de tiempo.
+
+preparar_cccv.m configura los bloques de registro de la copia.
+simular_cccv.m ejecuta el modelo y exporta las series.
+digitalizar_ficha.m extrae las trazas del recorte.
+comparar_curvas.m genera las gráficas y las métricas.
+
+
+Ficha completa del fabricante (fuente del recorte incluido):
+https://www.eistoelectronics.com/web/userfiles/download/ICR18650-2200mAhBatteryDatasheet.pdf
